@@ -15,9 +15,7 @@ namespace lock_out_tap_overlay
         {
             if (checkboxIsLockOutMechanismEnabled.IsChecked)
             {
-                _wdtOverlay.StartOrRestart(
-                    initialAction: () => IsLockedOut = true,
-                    completeAction: () => IsLockedOut = false);
+                ExtendLockout();
             }
             count++;
             if (count == 1)
@@ -27,8 +25,14 @@ namespace lock_out_tap_overlay
 
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
+        WatchdogTimer _wdtOverlay = new WatchdogTimer { Interval = TimeSpan.FromSeconds(2) };
 
-        WatchdogTimer _wdtOverlay = new WatchdogTimer();
+        private void ExtendLockout()
+        {
+            _wdtOverlay.StartOrRestart(
+                initialAction: () => IsLockedOut = true,
+                completeAction: () => IsLockedOut = false);
+        }
 
         public bool IsLockedOut
         {
@@ -43,5 +47,10 @@ namespace lock_out_tap_overlay
             }
         }
         bool _isLockedOut = false;
+
+        private void OnOverlayTapped(object sender, TappedEventArgs e)
+        {
+            ExtendLockout();
+        }
     }
 }

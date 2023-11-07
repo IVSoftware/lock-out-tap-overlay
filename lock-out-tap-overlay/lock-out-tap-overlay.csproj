@@ -49,8 +49,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="IVSoftware.Portable.WatchdogTimer" Version="1.0.2-beta" />
+		<PackageReference Include="IVSoftware.Portable.WatchdogTimer" Version="1.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Screenshots\" />
 	</ItemGroup>
 
 </Project>

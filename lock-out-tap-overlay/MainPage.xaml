@@ -54,7 +54,11 @@
             BackgroundColor="DarkGray" 
             Opacity="0.25"
             InputTransparent="False"
-            IsVisible="{Binding IsLockedOut}"/>
+            IsVisible="{Binding IsLockedOut}">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnOverlayTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
     </Grid>
 
 </ContentPage>
